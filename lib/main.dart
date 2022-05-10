@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:request/layout/home_layout.dart';
 import 'package:request/request.dart';
 import 'package:request/shared/components/constants.dart';
 import 'package:request/shared/network/local/cache_helper.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return MaterialApp(
-      home: RequestScreen(),
+      debugShowCheckedModeBanner: false,
+      home: HomeLayout(),
     );
   }
 }

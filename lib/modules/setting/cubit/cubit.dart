@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:request/cubit/states.dart';
+import 'package:request/modules/setting/cubit/states.dart';
 import 'package:request/shared/components/constants.dart';
 import 'package:request/shared/network/local/cache_helper.dart';
 import 'package:request/shared/network/remote/dio_helper.dart';
@@ -21,8 +21,10 @@ class RequestCubit extends Cubit<RequestStates> {
     });
   }
 
+  String? q;
   void saveData(String linko) async {
     await CacheHelper.saveData(key: 'link', value: linko);
+    q = linko;
     emit(SavedSharedSuccessState());
   }
 

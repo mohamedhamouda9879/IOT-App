@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:request/shared/styles/colors.dart';
 
 Widget defaultButton({
@@ -78,3 +79,31 @@ void NavigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       ),
       (Route<dynamic> route) => false,
     );
+
+void showToast({required String message, required ToastStates toastStates}) =>
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: chooseToastColor(toastStates),
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+// ignore: constant_identifier_names
+enum ToastStates { SUCCESS, EROOR, WARNING }
+Color chooseToastColor(ToastStates states) {
+  Color color;
+  switch (states) {
+    case ToastStates.SUCCESS:
+      color = Colors.green;
+      break;
+    case ToastStates.EROOR:
+      color = Colors.red;
+      break;
+    case ToastStates.WARNING:
+      color = Colors.blue;
+      break;
+  }
+  return color;
+}

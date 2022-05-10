@@ -6,7 +6,9 @@ import 'package:request/shared/components/components.dart';
 import 'package:request/shared/components/constants.dart';
 import 'package:request/shared/network/local/cache_helper.dart';
 
-class SendScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -21,10 +23,18 @@ class SendScreen extends StatelessWidget {
                 children: [
                   defaultButton(
                       function: () {
-                        LINK = CacheHelper.getData(key: 'link');
-                        RequestCubit.get(context).getRequest(context, LINK);
+                        if (LINK == '') {
+                          print('er');
+                          showToast(
+                              message: 'Please Enter Your Link',
+                              toastStates: ToastStates.EROOR);
+                        } else {
+                          print('error');
+                          LINK = CacheHelper.getData(key: 'link');
+                          RequestCubit.get(context).getRequest(context, LINK);
+                        }
                       },
-                      text: 'Send Request',
+                      text: 'Open Door',
                       width: 150,
                       radius: 12.0)
                 ],
