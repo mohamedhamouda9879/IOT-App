@@ -41,7 +41,7 @@ class SettingScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            '${RequestCubit.get(context).q == null ? 'Please Enter your link' : RequestCubit.get(context).q}',
+                            '${LINK == null ? 'Please Enter your link' : LINK}',
                             maxLines: 2,
                             style: TextStyle(
                               fontSize: 18,

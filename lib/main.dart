@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:request/layout/home_layout.dart';
 import 'package:request/request.dart';
+import 'package:request/shared/bloc_observer.dart';
 import 'package:request/shared/components/constants.dart';
 import 'package:request/shared/network/local/cache_helper.dart';
 import 'package:request/shared/network/remote/dio_helper.dart';
@@ -14,7 +16,14 @@ void main() async {
       ? ''
       : CacheHelper.getData(key: 'link');
   print('link $LINK');
-  runApp(const MyApp());
+
+  BlocOverrides.runZoned(
+    () {
+      // Use cubits...
+      runApp(const MyApp());
+    },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {

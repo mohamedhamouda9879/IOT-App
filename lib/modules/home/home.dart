@@ -14,7 +14,11 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => RequestCubit(),
       child: BlocConsumer<RequestCubit, RequestStates>(
-        listener: ((context, state) {}),
+        listener: ((context, state) {
+          if (state is OpenDoorLoadingState) {
+            LINK = CacheHelper.getData(key: 'link');
+          }
+        }),
         builder: ((context, state) {
           return Scaffold(
             body: Center(
@@ -23,16 +27,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   defaultButton(
                       function: () {
-                        if (LINK == '') {
-                          print('er');
-                          showToast(
-                              message: 'Please Enter Your Link',
-                              toastStates: ToastStates.EROOR);
-                        } else {
-                          print('error');
-                          LINK = CacheHelper.getData(key: 'link');
-                          RequestCubit.get(context).getRequest(context, LINK);
-                        }
+                        RequestCubit.get(context).openDoor(context);
                       },
                       text: 'Open Door',
                       width: 150,

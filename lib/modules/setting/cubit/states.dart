@@ -11,4 +11,8 @@ class RequestErrorState extends RequestStates {
 
 class SavedSharedSuccessState extends RequestStates {}
 
+class OpenDoorState extends RequestStates {}
+
+class OpenDoorLoadingState extends RequestStates {}
+
 class ChangeColorSuccessState extends RequestStates {}
